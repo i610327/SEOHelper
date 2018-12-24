@@ -1,0 +1,15 @@
+E:\c#软件\排名查询\排名查询\bin\Debug\排名查询.exe
+E:\c#软件\排名查询\排名查询\bin\Debug\排名查询.pdb
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.Properties.Resources.resources
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.csproj.GenerateResource.Cache
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.exe
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.pdb
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.查询排名.resources
+E:\c#软件\排名查询\排名查询\bin\Debug\排名查询.exe.config
+E:\c#软件\排名查询\排名查询\bin\Debug\CSkin.dll
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.UI.地址增删.resources
+E:\c#软件\排名查询\排名查询\bin\Debug\CSkin.xml
+E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.UI.关键词增加.resources
+E:\项目文件夹\SEOHelper\排名查询\bin\Debug\排名查询.exe.config
+E:\项目文件夹\SEOHelper\排名查询\obj\Debug\排名查询.exe
+E:\项目文件夹\SEOHelper\排名查询\obj\Debug\排名查询.pdb

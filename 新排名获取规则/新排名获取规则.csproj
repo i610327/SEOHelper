@@ -35,8 +35,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FeaturesBLL">
-      <HintPath>..\..\FeaturesBLL\bin\Debug\FeaturesBLL.dll</HintPath>
+    <Reference Include="FeaturesBLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\c#软件\FeaturesBLL\bin\Debug\FeaturesBLL.dll</HintPath>
     </Reference>
     <Reference Include="HttpHelper">
       <HintPath>..\..\HttpHelper V1.9\bin\Debug\HttpHelper.dll</HintPath>

@@ -14,3 +14,14 @@ E:\c#软件\排名查询\新排名获取规则\obj\Debug\新排名获取规则.c
 E:\项目文件夹\SEOHelper\新排名获取规则\bin\Debug\新排名获取规则.exe.config
 E:\项目文件夹\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.exe
 E:\项目文件夹\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.pdb
+C:\Users\Administrator\SEOHelper\新排名获取规则\bin\Debug\新排名获取规则.exe.config
+C:\Users\Administrator\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.exe
+C:\Users\Administrator\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.pdb
+C:\Users\Administrator\SEOHelper\新排名获取规则\bin\Debug\新排名获取规则.exe
+C:\Users\Administrator\SEOHelper\新排名获取规则\bin\Debug\新排名获取规则.pdb
+C:\Users\Administrator\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.Form_windows.resources
+C:\Users\Administrator\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.Properties.Resources.resources
+C:\Users\Administrator\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.csproj.GenerateResource.Cache
+C:\Users\Administrator\SEOHelper\新排名获取规则\obj\Debug\新排名获取规则.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\SEOHelper\新排名获取规则\bin\Debug\FeaturesBLL.dll
+C:\Users\Administrator\SEOHelper\新排名获取规则\bin\Debug\FeaturesBLL.pdb

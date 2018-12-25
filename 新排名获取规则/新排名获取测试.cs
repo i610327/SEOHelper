@@ -36,7 +36,7 @@ namespace 新排名获取规则
 
         private void Form_windows_Load(object sender, EventArgs e)
         {
-
+            
         }
 
 
@@ -68,7 +68,9 @@ namespace 新排名获取规则
 
         private void GetRanking(object keyword)
         {
-            txt_text.AppendText(keyword + "排名为：" + op.GetRanking(keyword.ToString(), url, 30) + "\r\n");
+            txt_text.AppendText(keyword + "的360排名为：" + op.GetRanking(keyword.ToString(), url, 30) + "\r\n");
+            Operate op2 = new Operate("baidu");
+            txt_text.AppendText(keyword + "的百度排名为：" + op2.GetRanking(keyword.ToString(), url, 30) + "\r\n");
         }
 
 

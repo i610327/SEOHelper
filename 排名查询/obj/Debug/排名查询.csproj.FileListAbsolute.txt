@@ -13,3 +13,6 @@ E:\c#软件\排名查询\排名查询\obj\Debug\排名查询.UI.关键词增加.
 E:\项目文件夹\SEOHelper\排名查询\bin\Debug\排名查询.exe.config
 E:\项目文件夹\SEOHelper\排名查询\obj\Debug\排名查询.exe
 E:\项目文件夹\SEOHelper\排名查询\obj\Debug\排名查询.pdb
+C:\Users\Administrator\SEOHelper\排名查询\bin\Debug\排名查询.exe.config
+C:\Users\Administrator\SEOHelper\排名查询\obj\Debug\排名查询.exe
+C:\Users\Administrator\SEOHelper\排名查询\obj\Debug\排名查询.pdb

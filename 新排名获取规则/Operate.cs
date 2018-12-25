@@ -83,8 +83,8 @@ namespace 新排名获取规则
         /// <summary>
         /// 实例化类
         /// </summary>
-        FeaturesBLL.Find.Regularly rl = new FeaturesBLL.Find.Regularly();
         FeaturesBLL.HTTP.Filter ff = new FeaturesBLL.HTTP.Filter();
+        FeaturesBLL.Find.Regularly fr = new FeaturesBLL.Find.Regularly();
 
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace 新排名获取规则
             if (this.facilitator == "baidu")
             {
                 //页数范围
-                string pagestr = rl.GetRegexStr(httpStr, "<strong><span class=\"fk fk_cur\"><i class=\"c-icon c-icon-bear-p\"></i></span><span class=\"pc\">1</span></strong>([\\s\\S]*?)<span class=\"fk fkd\"><i class=\"c-icon c-icon-bear-pn\"></i></span><span class=\"pc\">10</span></a>");
+                string pagestr = fr.GetRegexStr(httpStr, "<strong><span class=\"fk fk_cur\"><i class=\"c-icon c-icon-bear-p\"></i></span><span class=\"pc\">1</span></strong>([\\s\\S]*?)<span class=\"fk fkd\"><i class=\"c-icon c-icon-bear-pn\"></i></span><span class=\"pc\">10</span></a>");
 
                 //未处理的翻页地址
                 string[] temp_pageUrl = pagestr.Split(new string[] { "<a" }, StringSplitOptions.RemoveEmptyEntries);
@@ -109,7 +109,7 @@ namespace 新排名获取规则
                 //储存到数组
                 for (int i = 0; i < temp_pageUrl.Length; i++)
                 {
-                    pageUrl[i] = "https://www.baidu.com" + rl.GetRegexStr(temp_pageUrl[i], "href=\"([\\s\\S]*?)\">").Trim();
+                    pageUrl[i] = "https://www.baidu.com" + fr.GetRegexStr(temp_pageUrl[i], "href=\"([\\s\\S]*?)\">").Trim();
                 }
 
             }
@@ -119,7 +119,7 @@ namespace 新排名获取规则
             if (this.facilitator == "so")
             {
                 //页数范围
-                string pagestr = rl.GetRegexStr(httpStr, "<div id=\"page\">([\\s\\S]*?)下一页</a><span class=\"nums\" style=\"margin-left:20px\">找到相关结果约");
+                string pagestr = fr.GetRegexStr(httpStr, "<div id=\"page\">([\\s\\S]*?)下一页</a><span class=\"nums\" style=\"margin-left:20px\">找到相关结果约");
 
                 //未处理的翻页地址
                 string[] temp_pageUrl = pagestr.Split(new string[] { "<a" }, StringSplitOptions.RemoveEmptyEntries);
@@ -127,7 +127,7 @@ namespace 新排名获取规则
                 //储存到数组
                 for (int i = 1; i < temp_pageUrl.Length-1; i++)
                 {
-                    pageUrl[i - 1] = "https://www.so.com" + rl.GetRegexStr(temp_pageUrl[i], "href=\"([\\s\\S]*?)\">").Trim();
+                    pageUrl[i - 1] = "https://www.so.com" + fr.GetRegexStr(temp_pageUrl[i], "href=\"([\\s\\S]*?)\">").Trim();
                 }
 
             }
@@ -246,7 +246,8 @@ namespace 新排名获取规则
             if (this.facilitator == "baidu")
             {
                 RangerRegular = "<div id=\"content_left\">([\\s\\S]*?)<div style=\"clear:both;height:0;\">";
-                Separator = "<div class=\"result c-container \"";
+                //Separator = "<div class=\"result c-container \"";
+                Separator ="<div class=\"result";
                 TitleRegular = "data-tools='{\"title\":\"([\\s\\S]*?)\"";
                 TempUrlRegular="<div class=\"f13\"><a target=\"_blank\" href=\"([\\s\\S]*?)\" class=\"c-showurl\"";
                 SnapshotDateRegular="<div class=\"f13\"><a target=\"_blank\" href=\"([\\s\\S]*?)\" class=\"c-showurl\"";
@@ -257,8 +258,8 @@ namespace 新排名获取规则
             {
                 RangerRegular = "<li class=\"res-list\" data-urlfp=([\\s\\S]*?)<div id=\"side\">";
                 Separator = "<h3(\\s+)class=\"";
-                TitleRegular = "data-noref=\"1\"([\\s\\S]*?)</h3>";
-                TempUrlRegular = "<a href=\"([\\s\\S]*?)\"  rel=\"noreferrer noopener\"";
+                TitleRegular = "target=\"_blank\">([\\s\\S]*?)</a>";
+                TempUrlRegular = "href *= *['\"]*(\\S+)[\"']";
                 SnapshotDateRegular = "http://c.360webcache.com([\\s\\S]*?)\"";
             }
             //如果类型是搜狗
@@ -268,29 +269,29 @@ namespace 新排名获取规则
             }
 
             //划分大概范围
-            string first_step_httpstr = rl.GetRegexStr(httpstr, RangerRegular);
+            string first_step_httpstr = fr.GetRegexStr(httpstr, RangerRegular);
 
             //进一步分割
             string[] split_character = GetCharacter(first_step_httpstr,Separator); 
 
             //进行遍历
-            for (int i = 1; i < split_character.Length; i++)
+            for (int i = 0; i < split_character.Length; i++)
             {
                 //网站标题
-                string title = GetHandleTitle(rl.GetRegexStr(split_character[i], TitleRegular));
+                string title = GetHandleTitle(fr.GetRegexstrTop1(split_character[i], TitleRegular));
 
                 //未经过302的链接
-                string url_temp = rl.GetRegexStr(split_character[i], TempUrlRegular);
+                string url_temp = fr.GetRegexstrTop1(split_character[i], TempUrlRegular);
 
                 //快照日期
-                string snapshotDate = GetHandleSnapshotDateRegular(rl.GetRegexStr(split_character[i], SnapshotDateRegular));
+                string snapshotDate = GetHandleSnapshotDateRegular(fr.GetRegexstrTop1(split_character[i], SnapshotDateRegular));
 
                 //302后真实地址
                 string Url = Jump302(url_temp);
 
                 if (Url.Contains(url) || Url == url)
                 {
-                    return (page*10) + i;
+                    return (page*10) + i+1;
                 }
 
             }
@@ -307,10 +308,9 @@ namespace 新排名获取规则
         {
             if (this.facilitator == "so")
             {
-                string tempstr=rl.GetRegexStr(str, "target=\"_blank\">([\\s\\S]*?)</a>");
-                tempstr=tempstr.Replace("<em>", "");
-                tempstr=tempstr.Replace("</em>", "");
-                return tempstr;
+                str = str.Replace("<em>", "");
+                str = str.Replace("</em>", "");
+                return str;
 
             }
 
@@ -327,8 +327,6 @@ namespace 新排名获取规则
         /// <returns>返回处理结果</returns>
         private string[] GetCharacter(string htmlstr, string separator)
         {
-            if (this.facilitator == "so")
-            {
                 string [] temps = Regex.Split(htmlstr, separator);
                 //主数据存储
                 string[] strs = new string[10];
@@ -339,18 +337,25 @@ namespace 新排名获取规则
                 //遍历数组
                 foreach (string str in temps)
                 {
-                    //判断数组指定字符的长度，主要为了过滤空白和无效字符
-                    if (str.Trim().Count() > 20)
+                    if (this.facilitator == "so")
                     {
-                        strs[key] = str;
+                        //判断数组指定字符的长度，主要为了过滤空白和无效字符
+                        if (str.Trim().Count() > 60)
+                        {
+                            strs[key] = str;
+                            key++;
+                        }
+                    }
+                    else if (this.facilitator == "baidu")
+                    {
+                        if (key != 0)
+                        {
+                            strs[key - 1] = str;
+                        }
                         key++;
                     }
                 }
                 return strs;
-            }
-
-            return htmlstr.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries); ;
-
         }
 
 
@@ -381,6 +386,12 @@ namespace 新排名获取规则
         /// <returns></returns>
         public string Jump302(string url)
         {
+            if (!url.Contains("www.baidu.com") && !url.Contains("www.so.com") && !url.Contains("www.sougou.com"))
+            {
+                return url;
+            }
+            
+            
             try
             {
                 HttpHelper http = new HttpHelper();
